@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @quarter %>
+
+<div>
+  <%= link_to "Edit this quarter", edit_quarter_path(@quarter) %> |
+  <%= link_to "Back to quarters", quarters_path %>
+
+  <%= button_to "Destroy this quarter", @quarter, method: :delete %>
+</div>
