@@ -6,7 +6,7 @@ class CreatePeople < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :address
 
-      t.references :city, null: false, foreign_key: true
+      t.references :city, null: true, foreign_key: true
 
       t.timestamps
     end
