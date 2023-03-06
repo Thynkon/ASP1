@@ -11,3 +11,20 @@
 }
 
 */
+
+
+.link {
+  @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
+}
+
+.submit-button {
+  @apply cursor-pointer w-full px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded text-lg text-center;
+}
+
+.h1 {
+  @apply mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white;
+}
+
+.h2 {
+  @apply text-4xl font-extrabold dark:text-white;
+}
