@@ -5,6 +5,11 @@ class CreatePeople < ActiveRecord::Migration[7.0]
       t.string :lastname
       t.string :email
       t.string :address
+      # student
+      t.date :birthdate
+
+      # teacher
+      t.string :acronym
 
       t.references :city, null: true, foreign_key: true
 

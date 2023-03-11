@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        editor: "nano"
+        editor: "vim"
     volumes:
       - .:/app
     ports:

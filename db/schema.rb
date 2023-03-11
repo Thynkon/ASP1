@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   create_table "categories", force: :cascade do |t|
     t.string "slug"
     t.string "name"
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
     t.string "lastname"
     t.string "email"
     t.string "address"
+    t.date "birthdate"
+    t.string "acronym"
     t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "type"
     t.index ["city_id"], name: "index_people_on_city_id"
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
@@ -142,14 +145,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
     t.index ["students_id"], name: "index_student_participates_in_semesters_on_students_id"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.date "birthdate"
-    t.integer "person_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_students_on_person_id"
-  end
-
   create_table "teacher_teaches_courses", force: :cascade do |t|
     t.integer "teachers_id", null: false
     t.integer "courses_id", null: false
@@ -157,14 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
     t.datetime "updated_at", null: false
     t.index ["courses_id"], name: "index_teacher_teaches_courses_on_courses_id"
     t.index ["teachers_id"], name: "index_teacher_teaches_courses_on_teachers_id"
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "acronym"
-    t.integer "person_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_teachers_on_person_id"
   end
 
   add_foreign_key "categories", "categories", column: "categories_id"
@@ -182,8 +169,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_153835) do
   add_foreign_key "student_belongs_to_promotions", "students", column: "students_id"
   add_foreign_key "student_participates_in_semesters", "semesters", column: "semesters_id"
   add_foreign_key "student_participates_in_semesters", "students", column: "students_id"
-  add_foreign_key "students", "people"
   add_foreign_key "teacher_teaches_courses", "courses", column: "courses_id"
   add_foreign_key "teacher_teaches_courses", "teachers", column: "teachers_id"
-  add_foreign_key "teachers", "people"
 end

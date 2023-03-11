@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :teacher_teaches_courses
+      resources :student_participates_in_semesters
+      resources :student_belongs_to_promotions
+      resources :semesters
+      resources :roles
+      resources :quarters
+      resources :promotions
+      resources :person_has_roles
+      resources :exams
+      resources :evaluations
+      resources :courses
+      resources :cities
+      resources :categories
+      resources :people
+      resources :teachers
+      resources :students
+
+      root to: "teacher_teaches_courses#index"
+    end
   devise_for :people do
     get "/login" => "devise/sessions#new"
     get "/register" => "devise/registrations#new"
