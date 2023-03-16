@@ -81,3 +81,5 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "administrate", "~> 0.18.0"
+
+gem "awesome_nested_set", "~> 3.5"

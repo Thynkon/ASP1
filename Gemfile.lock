@@ -77,6 +77,8 @@ GEM
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
     ast (2.4.2)
+    awesome_nested_set (3.5.0)
+      activerecord (>= 4.0.0, < 7.1)
     backport (1.2.0)
     bcrypt (3.1.18)
     benchmark (0.2.1)
@@ -314,6 +316,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate (~> 0.18.0)
+  awesome_nested_set (~> 3.5)
   bootsnap
   capybara
   debug

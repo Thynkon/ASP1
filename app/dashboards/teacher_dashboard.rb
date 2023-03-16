@@ -25,6 +25,7 @@ class TeacherDashboard < Administrate::BaseDashboard
     reset_password_sent_at: Field::DateTime,
     reset_password_token: Field::String,
     roles: Field::HasMany,
+    teacher_teaches_courses: Field::HasMany,
     type: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -62,6 +63,7 @@ class TeacherDashboard < Administrate::BaseDashboard
     reset_password_sent_at
     reset_password_token
     roles
+    teacher_teaches_courses
     type
     created_at
     updated_at
@@ -87,6 +89,7 @@ class TeacherDashboard < Administrate::BaseDashboard
     reset_password_sent_at
     reset_password_token
     roles
+    teacher_teaches_courses
     type
   ].freeze
 

@@ -4,7 +4,7 @@ class CreateExams < ActiveRecord::Migration[7.0]
       t.string :name
       t.decimal :consideration
       t.datetime :passed_at
-      t.references :teachers, null: false, foreign_key: true
+      t.references :person, null: false, foreign_key: true
 
       t.timestamps
     end

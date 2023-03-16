@@ -10,9 +10,7 @@ class TeacherTeachesCourseDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     course: Field::BelongsTo,
-    courses_id: Field::Number,
     teacher: Field::BelongsTo,
-    teachers_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -25,8 +23,8 @@ class TeacherTeachesCourseDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     course
-    courses_id
     teacher
+    created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,9 +32,7 @@ class TeacherTeachesCourseDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     course
-    courses_id
     teacher
-    teachers_id
     created_at
     updated_at
   ].freeze
@@ -46,9 +42,7 @@ class TeacherTeachesCourseDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     course
-    courses_id
     teacher
-    teachers_id
   ].freeze
 
   # COLLECTION_FILTERS

@@ -13,8 +13,8 @@ class ExamDashboard < Administrate::BaseDashboard
     evaluations: Field::HasMany,
     name: Field::String,
     passed_at: Field::DateTime,
+    person_id: Field::Number,
     teacher: Field::BelongsTo,
-    teachers_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -39,8 +39,8 @@ class ExamDashboard < Administrate::BaseDashboard
     evaluations
     name
     passed_at
+    person_id
     teacher
-    teachers_id
     created_at
     updated_at
   ].freeze
@@ -53,8 +53,8 @@ class ExamDashboard < Administrate::BaseDashboard
     evaluations
     name
     passed_at
+    person_id
     teacher
-    teachers_id
   ].freeze
 
   # COLLECTION_FILTERS

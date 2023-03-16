@@ -10,12 +10,9 @@ class EvaluationDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     exam: Field::BelongsTo,
-    exams_id: Field::Number,
     grade: Field::String.with_options(searchable: false),
     student: Field::BelongsTo,
-    students_id: Field::Number,
     teacher: Field::BelongsTo,
-    teachers_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -28,8 +25,8 @@ class EvaluationDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     exam
-    exams_id
     grade
+    student
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,12 +34,9 @@ class EvaluationDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     exam
-    exams_id
     grade
     student
-    students_id
     teacher
-    teachers_id
     created_at
     updated_at
   ].freeze
@@ -52,12 +46,9 @@ class EvaluationDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     exam
-    exams_id
     grade
     student
-    students_id
     teacher
-    teachers_id
   ].freeze
 
   # COLLECTION_FILTERS

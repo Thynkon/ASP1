@@ -14,10 +14,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   create_table "categories", force: :cascade do |t|
     t.string "slug"
     t.string "name"
-    t.integer "categories_id", null: false
+    t.integer "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_categories_on_categories_id"
+    t.index ["lft"], name: "index_categories_on_lft"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["rgt"], name: "index_categories_on_rgt"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -32,34 +36,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
     t.string "slug"
     t.string "title"
     t.text "description"
-    t.integer "quarters_id", null: false
-    t.integer "categories_id", null: false
+    t.integer "quarter_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_courses_on_categories_id"
-    t.index ["quarters_id"], name: "index_courses_on_quarters_id"
+    t.index ["category_id"], name: "index_courses_on_category_id"
+    t.index ["quarter_id"], name: "index_courses_on_quarter_id"
   end
 
   create_table "evaluations", force: :cascade do |t|
     t.decimal "grade"
-    t.integer "exams_id", null: false
-    t.integer "students_id", null: false
-    t.integer "teachers_id", null: false
+    t.integer "exam_id", null: false
+    t.integer "student_id", null: false
+    t.integer "teacher_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exams_id"], name: "index_evaluations_on_exams_id"
-    t.index ["students_id"], name: "index_evaluations_on_students_id"
-    t.index ["teachers_id"], name: "index_evaluations_on_teachers_id"
+    t.index ["exam_id"], name: "index_evaluations_on_exam_id"
+    t.index ["student_id"], name: "index_evaluations_on_student_id"
+    t.index ["teacher_id"], name: "index_evaluations_on_teacher_id"
   end
 
   create_table "exams", force: :cascade do |t|
     t.string "name"
     t.decimal "consideration"
     t.datetime "passed_at"
-    t.integer "teachers_id", null: false
+    t.integer "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["teachers_id"], name: "index_exams_on_teachers_id"
+    t.index ["person_id"], name: "index_exams_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -103,10 +107,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   create_table "quarters", force: :cascade do |t|
     t.date "started_at"
     t.date "ended_at"
-    t.integer "semesters_id", null: false
+    t.integer "semester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["semesters_id"], name: "index_quarters_on_semesters_id"
+    t.index ["semester_id"], name: "index_quarters_on_semester_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -146,29 +150,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   end
 
   create_table "teacher_teaches_courses", force: :cascade do |t|
-    t.integer "teachers_id", null: false
-    t.integer "courses_id", null: false
+    t.integer "teacher_id", null: false
+    t.integer "course_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["courses_id"], name: "index_teacher_teaches_courses_on_courses_id"
-    t.index ["teachers_id"], name: "index_teacher_teaches_courses_on_teachers_id"
+    t.index ["course_id"], name: "index_teacher_teaches_courses_on_course_id"
+    t.index ["teacher_id"], name: "index_teacher_teaches_courses_on_teacher_id"
   end
 
-  add_foreign_key "categories", "categories", column: "categories_id"
-  add_foreign_key "courses", "categories", column: "categories_id"
-  add_foreign_key "courses", "quarters", column: "quarters_id"
-  add_foreign_key "evaluations", "exams", column: "exams_id"
-  add_foreign_key "evaluations", "students", column: "students_id"
-  add_foreign_key "evaluations", "teachers", column: "teachers_id"
-  add_foreign_key "exams", "teachers", column: "teachers_id"
+  add_foreign_key "courses", "categories"
+  add_foreign_key "courses", "quarters"
+  add_foreign_key "evaluations", "exams"
+  add_foreign_key "evaluations", "students"
+  add_foreign_key "evaluations", "teachers"
+  add_foreign_key "exams", "people"
   add_foreign_key "people", "cities"
   add_foreign_key "person_has_roles", "people"
   add_foreign_key "person_has_roles", "roles"
-  add_foreign_key "quarters", "semesters", column: "semesters_id"
+  add_foreign_key "quarters", "semesters"
   add_foreign_key "student_belongs_to_promotions", "promotions", column: "promotions_id"
   add_foreign_key "student_belongs_to_promotions", "students", column: "students_id"
   add_foreign_key "student_participates_in_semesters", "semesters", column: "semesters_id"
   add_foreign_key "student_participates_in_semesters", "students", column: "students_id"
-  add_foreign_key "teacher_teaches_courses", "courses", column: "courses_id"
-  add_foreign_key "teacher_teaches_courses", "teachers", column: "teachers_id"
+  add_foreign_key "teacher_teaches_courses", "courses"
+  add_foreign_key "teacher_teaches_courses", "teachers"
 end

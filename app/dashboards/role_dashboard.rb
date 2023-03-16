@@ -11,6 +11,7 @@ class RoleDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     people: Field::HasMany,
+    person_has_role: Field::HasMany,
     slug: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -25,7 +26,7 @@ class RoleDashboard < Administrate::BaseDashboard
     id
     name
     people
-    slug
+    person_has_role
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,6 +35,7 @@ class RoleDashboard < Administrate::BaseDashboard
     id
     name
     people
+    person_has_role
     slug
     created_at
     updated_at
@@ -45,6 +47,7 @@ class RoleDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     people
+    person_has_role
     slug
   ].freeze
 
