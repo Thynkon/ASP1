@@ -7,6 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 # Create admin role if it doesn't exist
 
+require 'faker'
+Faker::Config.locale = :en
+I18n.reload!
+
 ### Roles
 admin_role = Role.find_or_create_by(slug: "admin", name: "Administrator")
 user_role = Role.find_or_create_by(slug: "user", name: "User")
@@ -20,11 +24,11 @@ end
 
 ### Seeders
 # Create seeders for the cities in switzerland
-City.create!(name: "Zurich", zip_code: 8000)
-City.create!(name: "Geneva", zip_code: 1201)
-City.create!(name: "Basel", zip_code: 4051)
-City.create!(name: "Bern", zip_code: 3000)
-City.create!(name: "Lausanne", zip_code: 1000)
+zurich = City.create!(name: "Zurich", zip_code: 8000)
+geneva = City.create!(name: "Geneva", zip_code: 1201)
+basel = City.create!(name: "Basel", zip_code: 4051)
+bern = City.create!(name: "Bern", zip_code: 3000)
+lausanne = City.create!(name: "Lausanne", zip_code: 1000)
 
 # Semesters and quarters
 semester_1 = Semester.create!(started_at: Date.new(2020, 9, 1), ended_at: Date.new(2021, 1, 31))
@@ -41,20 +45,15 @@ quarter_5 = Quarter.create!(started_at: Date.new(2021, 10, 1), ended_at: Date.ne
 ### Create seeders for the categories
 # Create seeders for the categories
 general_modules = Category.create(slug: 'general_modules', name: 'Modules généraux', parent: nil)
-langue = Course.create(slug: 'langue', description: 'Anglais, Allemand, Français', category: general_modules, quarter: quarter_1)
-maths = Course.create(slug: 'maths', description: 'Mathématiques', category: general_modules, quarter: quarter_1)
-physique = Course.create(slug: 'physique', description: 'Physique', category: general_modules, quarter: quarter_1)
-chimie = Course.create(slug: 'chimie', description: 'Chimie', category: general_modules, quarter: quarter_1)
-informatique = Course.create(slug: 'informatique', description: 'Informatique', category: general_modules, quarter: quarter_1)
 
 # Create seeders for the categories
 specific_modules = Category.create(slug: 'specific_modules', name: 'Modules spécifiques', parent: nil)
 dev_modules = Category.create(slug: 'dev_modules', name: 'Modules de développement', parent: specific_modules)
-uml = Course.create(slug: 'UML1', description: 'Modéliser des applications Web en UML, processus de développement', category: dev_modules, quarter: quarter_1)
-poo1 = Course.create(slug: 'POO1', description: 'Concepts MVC avancés. Utilisation d’un ORM.', category: dev_modules, quarter: quarter_1)
-jav1 = Course.create(slug: 'JAV1', description: 'Créer des applications Android en JAVA', category: dev_modules, quarter: quarter_1)
-poo2 = Course.create(slug: 'POO2', description: 'Algorithmes et structures de données, Design Patterns, Test Driven Development', category: dev_modules, quarter: quarter_1)
-hkg1 = Course.create(slug: 'HKG1', description: 'Cross-site scripting, injection SQL', category: dev_modules, quarter: quarter_1)
+uml = Course.create(slug: 'UML1', title: 'UML1', description: 'Modéliser des applications Web en UML, processus de développement', category: dev_modules, quarter: quarter_1)
+poo1 = Course.create(slug: 'POO1', title: 'POO1', description: 'Concepts MVC avancés. Utilisation d’un ORM.', category: dev_modules, quarter: quarter_1)
+jav1 = Course.create(slug: 'JAV1', title: 'JAV1', description: 'Créer des applications Android en JAVA', category: dev_modules, quarter: quarter_1)
+poo2 = Course.create(slug: 'POO2', title: 'POO2', description: 'Algorithmes et structures de données, Design Patterns, Test Driven Development', category: dev_modules, quarter: quarter_1)
+hkg1 = Course.create(slug: 'HKG1', title: 'HKG1', description: 'Cross-site scripting, injection SQL', category: dev_modules, quarter: quarter_1)
 
 ### web_dev_modules
 web_dev_modules = Category.create(slug: 'web_dev_modules', name: 'Modules de développement web', parent: specific_modules)
@@ -79,8 +78,8 @@ daw = Course.create(slug: "DAW", title: "Déploiement d’Application Web en Loc
 cld2 = Course.create(slug: "CLD2", title: "Modification et déploiement de solutions dans le cloud, serverless", category: system_modules, quarter: quarter_1)
 vir1 = Course.create(slug: "VIR1", title: "Administration d’une plateforme de virtualisation", category: system_modules, quarter: quarter_1)
 
-professional_experience_modules = Category.create(slug: 'professional_experience_modules', name: 'Modules d\'application et expérience professionnelle', parent: nil)
-projects_and_internships = Category.create(slug: 'projects_and_internships', name: 'Projets et stages en entreprise', parent: professional_experience_modules)
+professional_experience_modules = Category.create(slug: 'prof_exp', name: 'Modules d\'application et expérience professionnelle', parent: nil)
+projects_and_internships = Category.create(slug: 'proj_intern', name: 'Projets et stages en entreprise', parent: professional_experience_modules)
 gpr1 = Course.create(slug: "GPR1", title: "GPR1", description: "Gestion de projet + éthique et culture d'entreprise", category: projects_and_internships, quarter: quarter_1)
 itil_com = Course.create(slug: "ITIL_COM", title: "ITIL_COM", description: "ITIL", category: projects_and_internships, quarter: quarter_1)
 maw_1_1 = Course.create(slug: "MAW1.1", title: "MAW1.1", description: "E-commerce", category: projects_and_internships, quarter: quarter_1)
@@ -96,10 +95,36 @@ english = Course.create(slug: "ANG", title: "Anglais", category: general_branche
 french = Course.create(slug: "FR", title: "Français", category: general_branches)
 economy = Course.create(slug: "GEO", title: "Gestion et Organisation", category: general_branches)
 
+# Promotions
+promotion_1 = Promotion.create!(name: "Promotion 2021/2022", started_at: Date.new(2021, 9, 1), ended_at: Date.new(2022, 6, 30))
+promotion_2 = Promotion.create!(name: "Promotion 2022/2023", started_at: Date.new(2022, 9, 1), ended_at: Date.new(2023, 6, 30))
+
+# Students
+student_1 = Student.create!(firstname: Faker::Name.firstname, lastname: Faker::Name.lastname, email: Faker::Internet.email, password: "asdfasdf", roles: [user_role])
+student_1.promotions << promotion_1
+student_1.save!
+
+student_2 = Student.create!(firstname: Faker::Name.firstname, lastname: Faker::Name.lastname, email: Faker::Internet.email, password: "asdfasdf", roles: [user_role])
+student_2.promotions << promotion_1
+student_2.save!
+
+# Teachers
+number_of_courses = Course.count
+teachers = []
+0.upto(number_of_courses - 1) do |i|
+  course = Course.order(:id).limit(1).offset(i).first
+  teacher = Teacher.create!(firstname: Faker::Name.firstname, lastname: Faker::Name.lastname, email: Faker::Internet.email, password: "asdfasdf", roles: [user_role])
+  course.teachers << teacher
+  course.save!
+  teachers << teacher
+end
+
+0.upto(number_of_courses - 1) do |i|
+  exam = Exam.create!(name: Faker::Name.title, weight: Faker::Number.between(from: 0.1, to: 3.0), teacher: teachers.sample)
+end
+
 # Create seeders for the schools
-# Create seeders for the teachers
 # Create seeders for the students
-# Create seeders for the courses
 # Create seeders for the exams
 # Create seeders for the evaluations
 

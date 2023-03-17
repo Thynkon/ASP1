@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  faker:
+    name:
+      firstname: "Firstname"
+      lastname: "Lastname"
+      title: "Title"
+    internet:
+      email: "email"
