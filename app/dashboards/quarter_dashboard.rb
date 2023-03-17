@@ -11,7 +11,6 @@ class QuarterDashboard < Administrate::BaseDashboard
     id: Field::Number,
     ended_at: Field::Date,
     semester: Field::BelongsTo,
-    semesters_id: Field::Number,
     started_at: Field::Date,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -26,7 +25,7 @@ class QuarterDashboard < Administrate::BaseDashboard
     id
     ended_at
     semester
-    semesters_id
+    started_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,7 +34,6 @@ class QuarterDashboard < Administrate::BaseDashboard
     id
     ended_at
     semester
-    semesters_id
     started_at
     created_at
     updated_at
@@ -47,7 +45,6 @@ class QuarterDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     ended_at
     semester
-    semesters_id
     started_at
   ].freeze
 

@@ -6,6 +6,10 @@ class Person < ApplicationRecord
   has_many :person_has_role, class_name: "PersonHasRole"
   has_many :roles, through: :person_has_role
   belongs_to :city, optional: true
+  
+  validates :firstname, presence: true, length: { minimum: 3, maximum: 45 }
+  validates :lastname, presence: true, length: { minimum: 3, maximum: 45 }
+  validates :email, presence: true, uniqueness: true, length: { minimum: 3, maximum: 100 }
 
   def admin?
     check_role('admin')

@@ -4,7 +4,7 @@ class CreatePersonHasRoles < ActiveRecord::Migration[7.0]
       t.references :person, null: false, foreign_key: true
       t.references :role, null: false, foreign_key: true
 
-      t.timestamps(created_at: :attributed_at, updated_at: :updated_at)
+      t.timestamps(created_at: :attributed_at, updated_at: :modified_at)
     end
   end
 end

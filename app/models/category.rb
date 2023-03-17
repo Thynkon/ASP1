@@ -1,7 +1,8 @@
 class Category < ApplicationRecord
-    #has_many :children, foreign_key: :category_id, class_name: 'Category'
-    #belongs_to :parent, foreign_key: :category_id, class_name: 'Category', optional: true
     has_many :courses
 
     acts_as_nested_set
+    
+    validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_]+\z/, message: "only allows letters, numbers and _" }, length: { minimum: 3, maximum: 20 }
+    validates :name, length: { minimum: 3, maximum: 45 }
 end

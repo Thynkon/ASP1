@@ -9,10 +9,12 @@ class CategoryDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    categories_id: Field::Number,
     children: Field::HasMany,
+    courses: Field::HasMany,
+    lft: Field::Number,
     name: Field::String,
     parent: Field::BelongsTo,
+    rgt: Field::Number,
     slug: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -25,19 +27,21 @@ class CategoryDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    categories_id
     children
-    name
+    courses
+    lft
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    categories_id
     children
+    courses
+    lft
     name
     parent
+    rgt
     slug
     created_at
     updated_at
@@ -47,10 +51,12 @@ class CategoryDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    categories_id
     children
+    courses
+    lft
     name
     parent
+    rgt
     slug
   ].freeze
 
