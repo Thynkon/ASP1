@@ -2,9 +2,13 @@
 
 <%= render @exam %>
 
-<div>
-  <%= link_to "Edit this exam", edit_exam_path(@exam) %> |
-  <%= link_to "Back to exams", exams_path %>
+<div class="flex flex-col">
+  <div>
+    <%= link_to "Edit this exam", edit_exam_path(@exam), class: "link" %> |
+    <%= link_to "Go back", :back, class: "link" %>
+  </div>
 
-  <%= button_to "Destroy this exam", @exam, method: :delete %>
+  <div class="mt-4">
+    <%= button_to "Delete this exam", @exam, method: :delete, class: "submit-button" %>
+  </div>
 </div>

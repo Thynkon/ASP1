@@ -7,8 +7,8 @@ class Person < ApplicationRecord
   has_many :roles, through: :person_has_role
   belongs_to :city, optional: true
   
-  validates :firstname, presence: true, length: { minimum: 3, maximum: 45 }
-  validates :lastname, presence: true, length: { minimum: 3, maximum: 45 }
+  validates :firstname, presence: false, length: { maximum: 45 }
+  validates :lastname, presence: false, length: { maximum: 45 }
   validates :email, presence: true, uniqueness: true, length: { minimum: 3, maximum: 100 }
 
   def admin?
@@ -21,6 +21,14 @@ class Person < ApplicationRecord
 
   def user?
     check_role('user')
+  end
+
+  def teacher?
+    is_a?(Teacher)
+  end
+  
+  def student?
+    is_a?(Student)
   end
 
   private

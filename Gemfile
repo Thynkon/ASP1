@@ -85,3 +85,5 @@ gem "administrate", "~> 0.18.0"
 gem "awesome_nested_set", "~> 3.5"
 
 gem "faker", "~> 3.1"
+
+gem "pundit", "~> 2.3"

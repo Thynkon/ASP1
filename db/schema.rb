@@ -59,10 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   create_table "exams", force: :cascade do |t|
     t.string "name"
     t.decimal "weight"
-    t.datetime "passed_at"
+    t.datetime "passed_at", default: "2023-03-21 16:15:36"
     t.integer "person_id", null: false
+    t.integer "course_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_exams_on_course_id"
     t.index ["person_id"], name: "index_exams_on_person_id"
   end
 
@@ -163,6 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   add_foreign_key "evaluations", "exams"
   add_foreign_key "evaluations", "students"
   add_foreign_key "evaluations", "teachers"
+  add_foreign_key "exams", "courses"
   add_foreign_key "exams", "people"
   add_foreign_key "people", "cities"
   add_foreign_key "person_has_roles", "people"

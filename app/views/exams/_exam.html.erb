@@ -5,13 +5,18 @@
   </p>
 
   <p>
-    <strong>Consideration:</strong>
-    <%= exam.consideration %>
+    <strong>Weight:</strong>
+    <%= number_with_precision(exam.weight, precision: 2) %>
   </p>
 
   <p>
     <strong>Passed at:</strong>
     <%= exam.passed_at %>
+  </p>
+
+  <p>
+    <strong>Course</strong>
+    <%= exam.course.title %>
   </p>
 
 </div>

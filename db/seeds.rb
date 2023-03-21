@@ -18,9 +18,8 @@ user_role = Role.find_or_create_by(slug: "user", name: "User")
 ### Users
 #admin_user = Teacher.find_or_create_by(email: "thynkon@asdf.asdf", password: "asdfasdf", password_confirmation: "asdfasdf", roles: [admin_role, user_role])
 # First or create the user if exists
-if !Teacher.exists?(email: "thynkon@asdf.asdf")
-  admin_user = Teacher.create(email: "thynkon@asdf.asdf", password: "asdfasdf", password_confirmation: "asdfasdf", roles: [admin_role])
-end
+admin_user = Teacher.create(email: "teacher@cpnv.ch", password: "asdfasdf", password_confirmation: "asdfasdf", roles: [admin_role])
+student_user = Student.create(email: "student@cpnv.ch", password: "asdfasdf", password_confirmation: "asdfasdf", roles: [user_role])
 
 ### Seeders
 # Create seeders for the cities in switzerland
@@ -111,16 +110,20 @@ student_2.save!
 # Teachers
 number_of_courses = Course.count
 teachers = []
+courses = []
 0.upto(number_of_courses - 1) do |i|
   course = Course.order(:id).limit(1).offset(i).first
   teacher = Teacher.create!(firstname: Faker::Name.firstname, lastname: Faker::Name.lastname, email: Faker::Internet.email, password: "asdfasdf", roles: [user_role])
   course.teachers << teacher
   course.save!
+
   teachers << teacher
+  courses << course
 end
 
 0.upto(number_of_courses - 1) do |i|
-  exam = Exam.create!(name: Faker::Name.title, weight: Faker::Number.between(from: 0.1, to: 3.0), teacher: teachers.sample)
+  exam = Exam.create!(name: Faker::Name.title, weight: Faker::Number.between(from: 0.1, to: 3.0), teacher: teachers.sample, course: courses.sample)
+  exam.save!
 end
 
 # Create seeders for the schools
