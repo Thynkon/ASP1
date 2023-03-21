@@ -1,4 +1,6 @@
-<p style="color: green"><%= notice %></p>
+<% flash.each do |type, msg| %>
+  <%= render "shared/message", message: msg, type: type %>
+<% end %>
 
 <%= render @course %>
 

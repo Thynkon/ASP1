@@ -4,7 +4,6 @@ class HomeController < ApplicationController
     @courses = Course.all
     @exams = Exam.all
 
-    authorize @courses
     render :index
   end
 end
