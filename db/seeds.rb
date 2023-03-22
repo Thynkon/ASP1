@@ -126,6 +126,12 @@ end
   exam.save!
 end
 
+# Evaluations
+exams = Exam.all
+exams.each do |exam|
+  Evaluation.create!(student: student_user, teacher: teachers.sample, exam: exam, grade: Faker::Number.between(from: 1.0, to: 6.0))
+end
+
 # Create seeders for the schools
 # Create seeders for the students
 # Create seeders for the exams

@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<div class="flex flex-col space-y-4 max-w-96">
+  <div class="border border-gray-200 rounded-md p-2">
+    <%= render @evaluation %>
+  </div>
 
-<%= render @evaluation %>
+  <div>
+    <%= link_to "Edit this evaluation", edit_evaluation_path(@evaluation), class: "link" %> |
+    <%= link_to "Back to evaluations", evaluations_path, class: "link" %>
 
-<div>
-  <%= link_to "Edit this evaluation", edit_evaluation_path(@evaluation) %> |
-  <%= link_to "Back to evaluations", evaluations_path %>
-
-  <%= button_to "Destroy this evaluation", @evaluation, method: :delete %>
+    <%= button_to "Destroy this evaluation", @evaluation, method: :delete, class: "submit-button" %>
+  </div>
 </div>

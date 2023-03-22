@@ -18,6 +18,12 @@
       <% end %>
 
       <div class="mt-4 w-full flex flex-col justify-center items-center">
+        <% if person_signed_in? %>
+          <% flash.each do |type, msg| %>
+            <%= render "shared/message", message: msg, type: type %>
+          <% end %>
+        <% end %>
+
         <%= yield %>
       </div>
     </main>

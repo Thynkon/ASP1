@@ -1,7 +1,17 @@
 <div id="<%= dom_id evaluation %>">
   <p>
+    <strong>Course</strong>
+    <%= evaluation.course.title %>
+  </p>
+
+  <p>
     <strong>Grade:</strong>
-    <%= evaluation.grade %>
+    <%= number_with_precision(evaluation.grade, precision: 2) %>
+  </p>
+
+  <p>
+    <strong>Teacher</strong>
+    <%= evaluation.teacher.fullname %>
   </p>
 
 </div>

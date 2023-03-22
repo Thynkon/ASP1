@@ -31,6 +31,10 @@ class Person < ApplicationRecord
     is_a?(Student)
   end
 
+  def fullname
+    "#{firstname} #{lastname}"
+  end
+
   private
   def check_role(role)
     roles.any? { |r| r.slug == role }

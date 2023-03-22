@@ -1,14 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="h1">Evaluations</h1>
 
-<h1>Evaluations</h1>
+<div class="w-full flex flex-col items-center">
+  <div class="flex flex-col space-y-4 w-full max-w-2xl">
+    <div id="evaluations" class="flex flex-col space-y-4">
+      <% @evaluations.each do |evaluation| %>
+        <div class="border border-gray-200 rounded-md p-2">
+          <%= render evaluation %>
+          <p>
+            <%= link_to "Show this evaluation", evaluation, class: "link" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
 
-<div id="evaluations">
-  <% @evaluations.each do |evaluation| %>
-    <%= render evaluation %>
-    <p>
-      <%= link_to "Show this evaluation", evaluation %>
-    </p>
-  <% end %>
+    <%= link_to "New evaluation", new_evaluation_path, class: "submit-button" %>
+  </div>
 </div>
-
-<%= link_to "New evaluation", new_evaluation_path %>
