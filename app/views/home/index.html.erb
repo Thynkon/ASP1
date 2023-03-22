@@ -2,44 +2,11 @@
   <%= render "shared/message", message: msg, type: type %>
 <% end %>
 
+<h1 class="h1">Welcome to CPNV</h1>
+
 <% if current_person.teacher? %>
   <div class="flex space-x-4">
-    <div>
-      <h1>Exams</h1>
-
-      <div class="flex flex-col space-y-4">
-        <div id="exams" class="flex flex-col space-y-4">
-          <% @exams.each do |exam| %>
-            <div class="border border-gray-200 rounded-md p-2">
-              <%= render exam %>
-              <p>
-                <%= link_to "Show this exam", exam, class: "link" %>
-              </p>
-            </div>
-          <% end %>
-        </div>
-
-        <%= link_to "New exam", new_exam_path, class: "submit-button" %>
-      </div>
-    </div>
-    <div>
-      <h1>Courses</h1>
-
-      <div class="flex flex-col space-y-4">
-        <div id="courses" class="flex flex-col space-y-4">
-          <% @courses.each do |course| %>
-            <div class="border border-gray-200 rounded-md p-2">
-              <%= render course %>
-              <p>
-                <%= link_to "Show this course", course, class: "link" %>
-              </p>
-            </div>
-          <% end %>
-        </div>
-
-        <%= link_to "New course", new_course_path, class: "submit-button" %>
-      </div>
-    </div>
+  <p>Teacher</p>
   </div>
 <% else %>
   <p>STUDENT</p>

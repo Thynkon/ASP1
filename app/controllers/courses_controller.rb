@@ -29,7 +29,8 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
+        #format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
+        format.html { redirect_to root_path, notice: "Course was successfully created." }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +60,7 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Course was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -72,6 +73,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:slug, :title, :description)
+      params.require(:course).permit(:slug, :title, :description, :category_id, :quarter_id)
     end
 end

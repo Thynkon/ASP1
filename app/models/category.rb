@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-    has_many :courses
+    has_many :courses, dependent: :delete_all
 
     acts_as_nested_set
     

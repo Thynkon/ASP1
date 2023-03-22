@@ -1,12 +1,18 @@
 <nav class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-md rounded-md">
   <div class="flex flex-wrap items-center justify-between mx-auto">
     <div class="flex space-x-4">
-      <%= link_to root_path, class: "block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent hover:text-blue-600 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent flex space-x-2", "aria-current" => "page" do %>
+      <%= link_to root_path, class: "flex align-center py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent hover:text-blue-600 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent flex space-x-2", "aria-current" => "page" do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
         
         <div>Home</div>
+      <% end %>
+
+      <% if current_person.teacher? %>
+        <%= link_to "Exams", exams_path, class: "px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"%>
+        <%= link_to "Courses", courses_path, class: "px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"%>
+      <% else %>
       <% end %>
     </div>
 

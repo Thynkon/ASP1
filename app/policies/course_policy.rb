@@ -10,6 +10,18 @@ class CoursePolicy < ApplicationPolicy
       user.teacher?
     end
 
+    def new?
+      user.teacher?
+    end
+
+    def create?
+      user.teacher?
+    end
+
+    def show?
+      user.teacher?
+    end
+
     def edit?
       user.teacher?
     end

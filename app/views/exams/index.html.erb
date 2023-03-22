@@ -1,14 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Exams</h1>
+<h1 class="h1">Exams</h1>
 
-<div id="exams">
-  <% @exams.each do |exam| %>
-    <%= render exam %>
-    <p>
-      <%= link_to "Show this exam", exam %>
-    </p>
-  <% end %>
+<div class="flex flex-col space-y-4">
+  <div id="exams" class="flex flex-col space-y-4">
+    <% @exams.each do |exam| %>
+      <div class="border border-gray-200 rounded-md p-2">
+        <%= render exam %>
+        <p>
+          <%= link_to "Show this exam", exam, class: "link" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New exam", new_exam_path, class: "submit-button" %>
 </div>
-
-<%= link_to "New exam", new_exam_path %>
