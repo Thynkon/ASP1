@@ -3,7 +3,13 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations or /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    if current_user.student?
+      @evaluations = current_user.evaluations
+    else
+      @evaluations = Evaluation.all
+    end
+
+    authorize @evaluations
   end
 
   # GET /evaluations/1 or /evaluations/1.json
@@ -13,6 +19,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
+    authorize @evaluation
   end
 
   # GET /evaluations/1/edit
@@ -22,6 +29,7 @@ class EvaluationsController < ApplicationController
   # POST /evaluations or /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
+    authorize @evaluation
 
     respond_to do |format|
       if @evaluation.save
@@ -36,6 +44,8 @@ class EvaluationsController < ApplicationController
 
   # PATCH/PUT /evaluations/1 or /evaluations/1.json
   def update
+    authorize @evaluation
+
     respond_to do |format|
       if @evaluation.update(evaluation_params)
         format.html { redirect_to evaluation_url(@evaluation), notice: "Evaluation was successfully updated." }
@@ -49,6 +59,7 @@ class EvaluationsController < ApplicationController
 
   # DELETE /evaluations/1 or /evaluations/1.json
   def destroy
+    authorize @evaluation
     @evaluation.destroy
 
     respond_to do |format|

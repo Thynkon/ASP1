@@ -5,5 +5,38 @@
   <p>Teacher</p>
   </div>
 <% else %>
-  <p>STUDENT</p>
+  <div class="w-full flex">
+    <div class="w-full flex flex-col items-center">
+      <h2 class="h2">Your teachers</h2>
+
+      <div class="w-full flex flex-col items-center">
+        <div class="flex flex-col space-y-4 w-full max-w-2xl">
+          <div id="courses" class="flex flex-col space-y-4">
+            <% current_person.teachers.each do |teacher| %>
+              <div class="border border-gray-200 rounded-md p-2">
+                <%= render teacher %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full flex flex-col items-center">
+      <h2 class="h2">Your courses</h2>
+
+      <div class="w-full flex flex-col items-center">
+        <div class="flex flex-col space-y-4 w-full max-w-2xl">
+          <div id="courses" class="flex flex-col space-y-4">
+            <% current_person.courses.each do |course| %>
+              <div class="border border-gray-200 rounded-md p-2">
+                <%= render course %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% end %>
