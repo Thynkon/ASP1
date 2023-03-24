@@ -14,6 +14,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
+    @evaluation.exam = Exam.find(params[:exam_id])
     authorize @evaluation
   end
 
@@ -24,6 +25,7 @@ class EvaluationsController < ApplicationController
   # POST /evaluations or /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
+    @evaluation.exam = Exam.find(params[:exam_id])
 
     authorize @evaluation
 

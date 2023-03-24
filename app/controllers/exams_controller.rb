@@ -13,6 +13,7 @@ class ExamsController < ApplicationController
   # GET /exams/new
   def new
     @exam = Exam.new
+    @exam.course = Course.find(params[:course_id])
   end
 
   # GET /exams/1/edit
@@ -22,6 +23,7 @@ class ExamsController < ApplicationController
   # POST /exams or /exams.json
   def create
     @exam = Exam.new(exam_params)
+    @exam.course = Course.find(params[:course_id])
     @exam.teacher = current_user
 
     respond_to do |format|
@@ -50,10 +52,11 @@ class ExamsController < ApplicationController
 
   # DELETE /exams/1 or /exams/1.json
   def destroy
+    @course = @exam.course
     @exam.destroy
 
     respond_to do |format|
-      format.html { redirect_to exams_path, notice: "Exam was successfully destroyed." }
+      format.html { redirect_to course_path(@course), notice: "Exam was successfully destroyed." }
       format.json { head :no_content }
     end
   end

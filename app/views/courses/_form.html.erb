@@ -5,27 +5,27 @@
     <% end %>
   <% end %>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :slug, style: "display: block" %>
     <%= form.text_field :slug, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :category, style: "display: block" %>
       <%= form.collection_select :category_id, Category.all, :id, :name, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
       <%= form.label :quarter, style: "display: block" %>
       <%= form.collection_select :quarter_id, Quarter.all, :id, :full_description, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
