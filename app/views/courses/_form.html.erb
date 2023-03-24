@@ -30,8 +30,6 @@
       <%= form.collection_select :quarter_id, Quarter.all, :id, :full_description, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div class="submit-button">
-    <%= form.submit %>
-  </div>
+  <%= form.submit class: "submit-button" %>
 
 <% end %>

@@ -1,14 +1,8 @@
 <%= form_with(model: exam, html: {class: "flex flex-col space-y-4"}) do |form| %>
   <% if exam.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
-
-      <ul>
-        <% exam.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% exam.errors.each do |error| %>
+      <%= render "shared/message", message: error.full_message, type: "error" %>
+    <% end %>
   <% end %>
 
   <div>
@@ -22,11 +16,14 @@
   </div>
 
   <div>
-    <%= form.label :passed_at, style: "display: block" %>
-    <%= form.datetime_field :passed_at, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
+    <%= form.label :teacher, style: "display: block" %>
+      <%= form.collection_select :teacher_id, Teacher.all, :id, :fullname, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div class="submit-button mt-4">
-    <%= form.submit %>
+  <div>
+      <%= form.label :course, style: "display: block" %>
+      <%= form.collection_select :course_id, Course.all, :id, :title, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
+
+  <%= form.submit class: "submit-button mt-4" %>
 <% end %>
