@@ -3,12 +3,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations or /evaluations.json
   def index
-    if current_user.student?
-      @evaluations = current_user.evaluations
-    else
-      @evaluations = Evaluation.all
-    end
-
+    @evaluations = current_user.evaluations
     authorize @evaluations
   end
 
@@ -29,7 +24,10 @@ class EvaluationsController < ApplicationController
   # POST /evaluations or /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
+
     authorize @evaluation
+
+    @evaluation.teacher = current_user
 
     respond_to do |format|
       if @evaluation.save
@@ -76,6 +74,6 @@ class EvaluationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def evaluation_params
-      params.require(:evaluation).permit(:grade)
+      params.require(:evaluation).permit(:grade, :student_id, :course_id, :exam_id)
     end
 end
