@@ -10,11 +10,10 @@ class StudentBelongsToPromotionDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     ended_at: Field::Date,
+    person_id: Field::Number,
     promotion: Field::BelongsTo,
-    promotions_id: Field::Number,
     started_at: Field::Date,
     student: Field::BelongsTo,
-    students_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,8 +26,8 @@ class StudentBelongsToPromotionDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     ended_at
+    person_id
     promotion
-    promotions_id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,11 +35,10 @@ class StudentBelongsToPromotionDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     ended_at
+    person_id
     promotion
-    promotions_id
     started_at
     student
-    students_id
     created_at
     updated_at
   ].freeze
@@ -50,11 +48,10 @@ class StudentBelongsToPromotionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     ended_at
+    person_id
     promotion
-    promotions_id
     started_at
     student
-    students_id
   ].freeze
 
   # COLLECTION_FILTERS

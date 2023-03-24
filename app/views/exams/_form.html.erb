@@ -5,22 +5,17 @@
     <% end %>
   <% end %>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :weight, style: "display: block" %>
     <%= form.text_field :weight, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
-    <%= form.label :teacher, style: "display: block" %>
-      <%= form.collection_select :teacher_id, Teacher.all, :id, :fullname, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
-  </div>
-
-  <div>
+  <div class="flex flex-col w-full basis-full">
       <%= form.label :course, style: "display: block" %>
       <%= form.collection_select :course_id, Course.all, :id, :title, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>

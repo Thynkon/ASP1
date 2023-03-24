@@ -9,12 +9,13 @@ class ExamDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    consideration: Field::String.with_options(searchable: false),
+    course: Field::BelongsTo,
     evaluations: Field::HasMany,
     name: Field::String,
     passed_at: Field::DateTime,
     person_id: Field::Number,
     teacher: Field::BelongsTo,
+    weight: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -26,7 +27,7 @@ class ExamDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    consideration
+    course
     evaluations
     name
   ].freeze
@@ -35,12 +36,13 @@ class ExamDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    consideration
+    course
     evaluations
     name
     passed_at
     person_id
     teacher
+    weight
     created_at
     updated_at
   ].freeze
@@ -49,12 +51,13 @@ class ExamDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    consideration
+    course
     evaluations
     name
     passed_at
     person_id
     teacher
+    weight
   ].freeze
 
   # COLLECTION_FILTERS

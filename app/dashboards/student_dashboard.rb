@@ -13,6 +13,7 @@ class StudentDashboard < Administrate::BaseDashboard
     address: Field::String,
     birthdate: Field::Date,
     city: Field::BelongsTo,
+    courses: Field::HasMany,
     email: Field::String,
     encrypted_password: Field::String,
     evaluations: Field::HasMany,
@@ -26,6 +27,9 @@ class StudentDashboard < Administrate::BaseDashboard
     reset_password_token: Field::String,
     roles: Field::HasMany,
     semesters: Field::HasMany,
+    student_belongs_to_promotions: Field::HasMany,
+    student_participates_in_semesters: Field::HasMany,
+    teachers: Field::HasMany,
     type: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -51,6 +55,7 @@ class StudentDashboard < Administrate::BaseDashboard
     address
     birthdate
     city
+    courses
     email
     encrypted_password
     evaluations
@@ -64,6 +69,9 @@ class StudentDashboard < Administrate::BaseDashboard
     reset_password_token
     roles
     semesters
+    student_belongs_to_promotions
+    student_participates_in_semesters
+    teachers
     type
     created_at
     updated_at
@@ -77,6 +85,7 @@ class StudentDashboard < Administrate::BaseDashboard
     address
     birthdate
     city
+    courses
     email
     encrypted_password
     evaluations
@@ -90,6 +99,9 @@ class StudentDashboard < Administrate::BaseDashboard
     reset_password_token
     roles
     semesters
+    student_belongs_to_promotions
+    student_participates_in_semesters
+    teachers
     type
   ].freeze
 

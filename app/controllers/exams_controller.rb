@@ -22,6 +22,7 @@ class ExamsController < ApplicationController
   # POST /exams or /exams.json
   def create
     @exam = Exam.new(exam_params)
+    @exam.teacher = current_user
 
     respond_to do |format|
       if @exam.save
@@ -65,6 +66,6 @@ class ExamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exam_params
-      params.require(:exam).permit(:name, :weight, :passed_at, :teacher_id, :course_id)
+      params.require(:exam).permit(:name, :weight, :passed_at, :course_id)
     end
 end

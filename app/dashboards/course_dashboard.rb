@@ -11,8 +11,11 @@ class CourseDashboard < Administrate::BaseDashboard
     id: Field::Number,
     category: Field::BelongsTo,
     description: Field::Text,
+    exams: Field::HasMany,
     quarter: Field::BelongsTo,
     slug: Field::String,
+    teacher_teaches_courses: Field::HasMany,
+    teachers: Field::HasMany,
     title: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -27,7 +30,7 @@ class CourseDashboard < Administrate::BaseDashboard
     id
     category
     description
-    quarter
+    exams
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,8 +39,11 @@ class CourseDashboard < Administrate::BaseDashboard
     id
     category
     description
+    exams
     quarter
     slug
+    teacher_teaches_courses
+    teachers
     title
     created_at
     updated_at
@@ -49,8 +55,11 @@ class CourseDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     category
     description
+    exams
     quarter
     slug
+    teacher_teaches_courses
+    teachers
     title
   ].freeze
 
