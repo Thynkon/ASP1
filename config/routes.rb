@@ -23,11 +23,15 @@ Rails.application.routes.draw do
     get "/login" => "devise/sessions#new"
     get "/register" => "devise/registrations#new"
   end
-  resources :courses
+  resources :courses do
+    resources :exams, only: [:new, :create]
+  end
   resources :quarters
   resources :semesters
-  resources :evaluations
-  resources :exams
+  resources :exams, only: [:index, :show, :edit, :destroy] do
+    resources :evaluations, only: [:new, :create]
+  end
+  resources :evaluations, only: [:show, :edit, :destroy]
   resources :cities
   resources :promotions
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

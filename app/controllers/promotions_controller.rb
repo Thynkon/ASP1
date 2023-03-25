@@ -3,7 +3,11 @@ class PromotionsController < ApplicationController
 
   # GET /promotions or /promotions.json
   def index
-    @promotions = Promotion.all
+    if current_user.teacher?
+      @promotions = Promotion.all
+    else
+      @promotions = current_user.promotions
+    end
   end
 
   # GET /promotions/1 or /promotions/1.json
@@ -21,7 +25,9 @@ class PromotionsController < ApplicationController
 
   # POST /promotions or /promotions.json
   def create
-    @promotion = Promotion.new(promotion_params)
+    @promotion = Promotion.new(name: promotion_params[:name], started_at: promotion_params[:started_at], ended_at: promotion_params[:ended_at])
+    @students = promotion_params['students'].map { |id| Student.find(id) }
+    @promotion.students = @students
 
     respond_to do |format|
       if @promotion.save
@@ -65,6 +71,6 @@ class PromotionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def promotion_params
-      params.require(:promotion).permit(:name, :started_at, :ended_at)
+      params.require(:promotion).permit(:name, :started_at, :ended_at, :students => [])
     end
 end

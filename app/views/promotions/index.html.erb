@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="h1">Promotions</h1>
 
-<h1>Promotions</h1>
+<div class="w-full flex flex-col items-center">
+  <div class="flex flex-col space-y-4 w-full max-w-2xl">
+    <div id="exam" class="flex flex-col space-y-4">
+      <% @promotions.each do |promotion| %>
+        <div class="border border-gray-200 rounded-md p-2">
+          <%= render promotion %>
+          <p>
+            <%= link_to "Show this promotion", promotion, class: "link" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
 
-<div id="promotions">
-  <% @promotions.each do |promotion| %>
-    <%= render promotion %>
-    <p>
-      <%= link_to "Show this promotion", promotion %>
-    </p>
-  <% end %>
+    <% if current_person.teacher? %>
+      <%= link_to "New promotion", new_promotion_path, class: "submit-button" %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New promotion", new_promotion_path %>

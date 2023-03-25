@@ -6,6 +6,7 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.text :description
       t.references :quarter, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
+      t.references :promotion, null: false, foreign_key: true
 
       t.timestamps
     end

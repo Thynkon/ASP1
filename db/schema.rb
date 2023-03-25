@@ -38,9 +38,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
     t.text "description"
     t.integer "quarter_id", null: false
     t.integer "category_id", null: false
+    t.integer "promotion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_courses_on_category_id"
+    t.index ["promotion_id"], name: "index_courses_on_promotion_id"
     t.index ["quarter_id"], name: "index_courses_on_quarter_id"
   end
 
@@ -58,8 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
 
   create_table "exams", force: :cascade do |t|
     t.string "name"
-    t.decimal "weight"
-    t.datetime "passed_at", default: "2023-03-21 16:55:13"
+    t.decimal "weight", default: "1.0", null: false
+    t.datetime "passed_at", default: "2023-03-25 12:41:11", null: false
     t.integer "person_id", null: false
     t.integer "course_id", null: false
     t.datetime "created_at", null: false
@@ -98,9 +100,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   end
 
   create_table "promotions", force: :cascade do |t|
-    t.string "name"
-    t.datetime "started_at", precision: nil
-    t.datetime "ended_at", precision: nil
+    t.string "name", null: false
+    t.datetime "started_at", precision: nil, null: false
+    t.datetime "ended_at", precision: nil, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_promotions_on_name", unique: true
@@ -143,12 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
 
   create_table "student_participates_in_semesters", force: :cascade do |t|
     t.boolean "conditional", default: false
-    t.integer "students_id", null: false
-    t.integer "semesters_id", null: false
+    t.integer "student_id", null: false
+    t.integer "semester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["semesters_id"], name: "index_student_participates_in_semesters_on_semesters_id"
-    t.index ["students_id"], name: "index_student_participates_in_semesters_on_students_id"
+    t.index ["semester_id"], name: "index_student_participates_in_semesters_on_semester_id"
+    t.index ["student_id"], name: "index_student_participates_in_semesters_on_student_id"
   end
 
   create_table "teacher_teaches_courses", force: :cascade do |t|
@@ -161,10 +163,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   end
 
   add_foreign_key "courses", "categories"
+  add_foreign_key "courses", "promotions"
   add_foreign_key "courses", "quarters"
   add_foreign_key "evaluations", "exams"
-  add_foreign_key "evaluations", "students"
-  add_foreign_key "evaluations", "teachers"
+  add_foreign_key "evaluations", "people", column: "student_id"
+  add_foreign_key "evaluations", "people", column: "teacher_id"
   add_foreign_key "exams", "courses"
   add_foreign_key "exams", "people"
   add_foreign_key "people", "cities"
@@ -173,8 +176,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   add_foreign_key "quarters", "semesters"
   add_foreign_key "student_belongs_to_promotions", "people"
   add_foreign_key "student_belongs_to_promotions", "promotions"
-  add_foreign_key "student_participates_in_semesters", "semesters", column: "semesters_id"
-  add_foreign_key "student_participates_in_semesters", "students", column: "students_id"
+  add_foreign_key "student_participates_in_semesters", "people", column: "student_id"
+  add_foreign_key "student_participates_in_semesters", "semesters"
   add_foreign_key "teacher_teaches_courses", "courses"
   add_foreign_key "teacher_teaches_courses", "people"
 end

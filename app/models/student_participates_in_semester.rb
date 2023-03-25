@@ -1,4 +1,4 @@
 class StudentParticipatesInSemester < ApplicationRecord
-    belongs_to :students
-    belongs_to :semesters
+    belongs_to :student
+    belongs_to :semester
 end

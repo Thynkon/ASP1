@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
     belongs_to :category
     belongs_to :quarter
+    belongs_to :promotion
     has_many :teacher_teaches_courses, dependent: :delete_all
     has_many :teachers, through: :teacher_teaches_courses, foreign_key: :person_id, dependent: :delete_all
     # Same as delete on cascade

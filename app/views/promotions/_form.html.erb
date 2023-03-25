@@ -1,32 +1,29 @@
 <%= form_with(model: promotion) do |form| %>
   <% if promotion.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(promotion.errors.count, "error") %> prohibited this promotion from being saved:</h2>
-
-      <ul>
-        <% promotion.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% promotion.errors.each do |error| %>
+      <%= render "shared/message", message: error.full_message, type: "error" %>
+    <% end %>
   <% end %>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :started_at, style: "display: block" %>
-    <%= form.datetime_field :started_at %>
+    <%= form.datetime_field :started_at, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
+  <div class="flex flex-col w-full basis-full">
     <%= form.label :ended_at, style: "display: block" %>
-    <%= form.datetime_field :ended_at %>
+    <%= form.datetime_field :ended_at, class: "w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-lg" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="flex flex-col w-full basis-full">
+    <%= form.label :students, style: "display: block" %>
+    <%= select_tag "promotion[students][]", options_for_select(Student.all.map { |t| [t.fullname, t.id] }), { multiple: true } %>
   </div>
+
+  <%= form.submit class: "submit-button mt-4" %>
 <% end %>

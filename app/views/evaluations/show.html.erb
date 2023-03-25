@@ -6,7 +6,7 @@
   <% if current_person.teacher? %>
     <div>
       <%= link_to "Edit this evaluation", edit_evaluation_path(@evaluation), class: "link" %> |
-      <%= link_to "Back to evaluations", evaluations_path, class: "link" %>
+      <%= link_to "Back to evaluations", :back, class: "link" %>
 
       <%= button_to "Destroy this evaluation", @evaluation, method: :delete, class: "submit-button" %>
     </div>
