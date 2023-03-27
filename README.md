@@ -53,10 +53,10 @@ All you need to do is to install a Ruby version greater than `3.1.0`. One of the
    ./bin/rails db:migrate
    ```
 
-3. Finally, launch the web server and the interactive shell
+3. Finally, launch the web server and tailwindcss watcher
 
    ```sh
-   ./bin/rails server
+   ./bin/dev
    ```
 
    Or you if want to have an interactive shell and execute Ruby code in live (just like `IRB`):

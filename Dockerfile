@@ -29,4 +29,4 @@ ENV EDITOR=${editor}
 EXPOSE 4000
 
 # Run the Rails server
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "4000"]
+CMD ["/bin/bash", "./bin/dev"]
