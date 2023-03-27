@@ -19,10 +19,12 @@ Rails.application.routes.draw do
 
       root to: "teacher_teaches_courses#index"
     end
-  devise_for :people do
+
+  devise_for :people, controllers: {registrations: "people/registrations"} do
     get "/login" => "devise/sessions#new"
     get "/register" => "devise/registrations#new"
   end
+
   resources :courses do
     resources :exams, only: [:new, :create]
   end

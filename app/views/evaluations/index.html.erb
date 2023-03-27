@@ -1,20 +1,28 @@
 <h1 class="h1">Evaluations</h1>
 
 <div class="w-full flex flex-col items-center">
-  <div class="flex flex-col space-y-4 w-full max-w-2xl">
-    <div id="evaluations" class="flex flex-col space-y-4">
-      <% @evaluations.each do |evaluation| %>
-        <div class="border border-gray-200 rounded-md p-2">
-          <%= render evaluation %>
-          <p>
-            <%= link_to "Show this evaluation", evaluation, class: "link" %>
-          </p>
-        </div>
+  <% if @evaluations.empty? %>
+    <div class="flex flex-col space-y-4 w-full max-w-2xl">
+      <div class="border border-gray-200 rounded-md p-2">
+        <p class="text-center">No evaluations yet</p>
+      </div>
+    </div>
+  <% else %>
+    <div class="flex flex-col space-y-4 w-full max-w-2xl">
+      <div id="evaluations" class="flex flex-col space-y-4">
+        <% @evaluations.each do |evaluation| %>
+          <div class="border border-gray-200 rounded-md p-2">
+            <%= render evaluation %>
+            <p>
+              <%= link_to "Show this evaluation", evaluation, class: "link" %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+
+      <% if current_person.teacher? %>
+        <%= link_to "New evaluation", new_evaluation_path, class: "submit-button" %>
       <% end %>
     </div>
-
-    <% if current_person.teacher? %>
-      <%= link_to "New evaluation", new_evaluation_path, class: "submit-button" %>
-    <% end %>
-  </div>
+  <% end %>
 </div>
