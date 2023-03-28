@@ -60,10 +60,11 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1 or /evaluations/1.json
   def destroy
     authorize @evaluation
+    @exam = @evaluation.exam
     @evaluation.destroy
 
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: "Evaluation was successfully destroyed." }
+      format.html { redirect_to exam_path(@exam), notice: "Evaluation was successfully destroyed." }
       format.json { head :no_content }
     end
   end
