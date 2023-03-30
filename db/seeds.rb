@@ -106,6 +106,8 @@ student_2 = Student.create!(firstname: Faker::Name.first_name, lastname: Faker::
 student_2.promotions << promotion_1
 student_2.save!
 
+student_user.promotions << promotion_2
+
 # Teachers
 number_of_courses = Course.count
 teachers = []

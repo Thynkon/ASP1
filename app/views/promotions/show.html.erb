@@ -4,25 +4,27 @@
     <%= render @promotion %>
   </div>
 
-  <div>
-    <%= link_to "Edit this promotion", edit_promotion_path(@promotion), class: "link" %> |
-    <%= link_to "Back to promotions", promotions_path, class: "link" %>
+  <% if current_person.teacher? %>
+    <div>
+      <%= link_to "Edit this promotion", edit_promotion_path(@promotion), class: "link" %> |
+      <%= link_to "Back to promotions", promotions_path, class: "link" %>
 
-    <%= button_to "Destroy this promotion", @promotion, method: :delete, class: "submit-button" %>
-  </div>
+      <%= button_to "Destroy this promotion", @promotion, method: :delete, class: "submit-button" %>
+    </div>
 
-  <div class="flex w-full">
-    <div class="w-full flex flex-col items-center">
-      <h2 class="h2">Students</h2>
-      <div class="flex flex-col space-y-4 w-full max-w-2xl">
-        <div id="evaluations" class="flex flex-col space-y-4">
-          <% @promotion.students.each do |student| %>
-            <div class="border border-gray-200 rounded-md p-2">
-              <%= render student %>
-            </div>
-          <% end %>
+    <div class="flex w-full">
+      <div class="w-full flex flex-col items-center">
+        <h2 class="h2">Students</h2>
+        <div class="flex flex-col space-y-4 w-full max-w-2xl">
+          <div id="evaluations" class="flex flex-col space-y-4">
+            <% @promotion.students.each do |student| %>
+              <div class="border border-gray-200 rounded-md p-2">
+                <%= render student %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
