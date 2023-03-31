@@ -138,6 +138,14 @@ bundle exec rspec ./spec/<FILE_TEXT>_spec.rb
 
 You can find class diagrams as well other kinds of diagrams under `doc/`.
 
+## Default users
+email: `teacher@cpnv.ch`
+password: `asdfasdf`
+
+email: `student@cpnv.ch`
+password: `asdfasdf`
+
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.

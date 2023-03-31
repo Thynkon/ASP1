@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_145506) do
   create_table "exams", force: :cascade do |t|
     t.string "name"
     t.decimal "weight", default: "1.0", null: false
-    t.datetime "passed_at", default: "2023-03-25 12:41:11", null: false
+    t.datetime "passed_at", default: "2023-03-30 09:15:52", null: false
     t.integer "person_id", null: false
     t.integer "course_id", null: false
     t.datetime "created_at", null: false
