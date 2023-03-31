@@ -12,6 +12,7 @@ class PromotionsController < ApplicationController
 
   # GET /promotions/1 or /promotions/1.json
   def show
+    authorize @promotion
   end
 
   # GET /promotions/new
@@ -21,6 +22,7 @@ class PromotionsController < ApplicationController
 
   # GET /promotions/1/edit
   def edit
+    authorize @promotion
   end
 
   # POST /promotions or /promotions.json
@@ -28,6 +30,8 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new(name: promotion_params[:name], started_at: promotion_params[:started_at], ended_at: promotion_params[:ended_at])
     @students = promotion_params['students'].map { |id| Student.find(id) }
     @promotion.students = @students
+
+    authorize @promotion
 
     respond_to do |format|
       if @promotion.save
@@ -42,6 +46,8 @@ class PromotionsController < ApplicationController
 
   # PATCH/PUT /promotions/1 or /promotions/1.json
   def update
+    authorize @promotion
+
     respond_to do |format|
       if @promotion.update(promotion_params)
         format.html { redirect_to promotion_url(@promotion), notice: "Promotion was successfully updated." }
@@ -55,6 +61,7 @@ class PromotionsController < ApplicationController
 
   # DELETE /promotions/1 or /promotions/1.json
   def destroy
+    authorize @promotion
     @promotion.destroy
 
     respond_to do |format|

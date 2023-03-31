@@ -1,4 +1,4 @@
-<%= form_with(model: evaluation, url: [evaluation.exam, evaluation], html: {class: "flex flex-col space-y-4 basis-full"}) do |form| %>
+<%= form_with(model: evaluation, html: {class: "flex flex-col space-y-4 basis-full"}) do |form| %>
   <% if evaluation.errors.any? %>
     <% evaluation.errors.each do |error| %>
       <%= render "shared/message", message: error.full_message, type: "error" %>

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :exams, only: [:index, :show, :edit, :destroy] do
     resources :evaluations, only: [:new, :create]
   end
-  resources :evaluations, only: [:show, :edit, :destroy]
+  resources :evaluations, only: [:show, :edit, :update, :destroy]
   resources :cities
   resources :promotions
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
