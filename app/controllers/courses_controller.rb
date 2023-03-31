@@ -24,7 +24,10 @@ class CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = Course.new(slug: course_params[:slug], title: course_params[:title], description: course_params[:description], category_id: course_params[:category_id], quarter_id: course_params[:quarter_id], promotion_id: course_params[:promotion_id])
+    @teacher = Teacher.find(course_params[:teacher_id])
+    @course.teachers << @teacher
+
     authorize @course
 
     respond_to do |format|
@@ -73,6 +76,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:slug, :title, :description, :category_id, :quarter_id, :promotion_id)
+      params.require(:course).permit(:slug, :title, :description, :category_id, :quarter_id, :promotion_id, :teacher_id)
     end
 end
