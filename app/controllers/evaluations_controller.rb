@@ -20,6 +20,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/1/edit
   def edit
+    authorize @evaluation
   end
 
   # POST /evaluations or /evaluations.json

@@ -43,8 +43,16 @@ All you need to do is to install a Ruby version greater than `3.1.0`. One of the
 
 1. Install dependencies
 
+   **Ruby dependencies**
+
    ```sh
    bundle
+   ```
+
+   **CSS dependencies**
+
+   ```sh
+   npm install
    ```
 
 2. Create database and lanch migrations

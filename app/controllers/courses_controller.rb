@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    authorize @course
   end
 
   # POST /courses or /courses.json
@@ -32,7 +33,6 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        #format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
         format.html { redirect_to root_path, notice: "Course was successfully created." }
         format.json { render :show, status: :created, location: @course }
       else
